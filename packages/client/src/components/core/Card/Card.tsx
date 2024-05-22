@@ -1,3 +1,4 @@
+import React from 'react'
 import { Card as MuiCard, CardContent } from '@mui/material'
 
 type Props = {

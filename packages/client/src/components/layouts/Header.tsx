@@ -17,22 +17,22 @@ const Box = styled.div`
 `
 
 type Props = {
-  leftText: string
-  rightText: string
-  img: string
+  leftHeaderText: string
+  rightHeaderText: string
+  userProfileImage?: string
   settings: { title: string; action: () => void }[]
   className?: string
 }
 
-export const Header = ({ leftText, rightText, img, settings, className }: Props) => {
-  const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(null)
+export const Header: React.FC<Props> = ({ leftHeaderText, rightHeaderText, userProfileImage, settings, className }) => {
+  const [userMenuAnchorEl, setUserMenuAnchorEl] = React.useState<HTMLElement | null>(null)
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget)
+    setUserMenuAnchorEl(event.currentTarget)
   }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null)
+    setUserMenuAnchorEl(null)
   }
 
   return (
@@ -40,18 +40,20 @@ export const Header = ({ leftText, rightText, img, settings, className }: Props)
       <Container maxWidth="xl">
         <StyledToolbar disableGutters>
           <Typography variant="h6" noWrap component="div">
-            {leftText}
+            {leftHeaderText}
           </Typography>
           <Box>
             <Typography variant="body1" noWrap component="div">
-              {rightText}
+              {rightHeaderText}
             </Typography>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu}>
-                <Avatar alt={rightText} src={img} />
-              </IconButton>
-            </Tooltip>
-            <Menu anchorEl={anchorElUser} settings={settings} handleClose={handleCloseUserMenu} />
+            {userProfileImage && (
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu}>
+                  <Avatar alt={rightHeaderText} src={userProfileImage} />
+                </IconButton>
+              </Tooltip>
+            )}
+            <Menu anchorEl={userMenuAnchorEl} settings={settings} handleClose={handleCloseUserMenu} />
           </Box>
         </StyledToolbar>
       </Container>

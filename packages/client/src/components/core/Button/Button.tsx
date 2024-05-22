@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import theme from '../../../theme'
 
@@ -26,7 +27,7 @@ type Props = {
   type?: 'submit' | 'reset' | 'button'
 }
 
-export const Button = ({ children, isLoading, type, onClick, className }: Props) => (
+export const Button = ({ children, isLoading, type = 'button', onClick, className }: Props) => (
   <StyledButton type={type} disabled={isLoading} onClick={onClick} className={className}>
     {isLoading ? 'Logging In...' : children}
   </StyledButton>

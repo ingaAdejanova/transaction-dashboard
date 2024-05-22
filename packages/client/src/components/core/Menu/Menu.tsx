@@ -1,25 +1,22 @@
-import { Menu as MuiMenu, MenuItem } from '@mui/material'
+import { Menu as MuiMenu, MenuItem, PopoverOrigin } from '@mui/material'
 import styled from 'styled-components'
+
+import { Typography } from '../Typography'
 
 type MenuItem = {
   title: string
   action: () => void
 }
 
-type Origin = {
-  vertical: 'top' | 'center' | 'bottom'
-  horizontal: 'left' | 'center' | 'right'
-}
-
 type Props = {
   anchorEl: HTMLElement | null
   settings: MenuItem[]
   handleClose: () => void
-  anchorOrigin?: Origin
-  transformOrigin?: Origin
+  anchorOrigin?: PopoverOrigin
+  transformOrigin?: PopoverOrigin
 }
 
-const StyledMenuItemText = styled.div`
+const StyledMenuItemText = styled(Typography)`
   text-align: center;
 `
 

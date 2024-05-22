@@ -1,3 +1,4 @@
+import React from 'react'
 import { Avatar as MuiAvatar } from '@mui/material'
 
 type Props = {

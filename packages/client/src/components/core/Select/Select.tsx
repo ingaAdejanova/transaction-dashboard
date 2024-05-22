@@ -1,12 +1,17 @@
-import { Select as MuiSelect, MenuItem, FormControl, InputLabel } from '@mui/material'
+import { Select as MuiSelect, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material'
+
+type Option = {
+  value: string
+  title: string
+}
 
 type Props = {
   value: any
   id: string
-  onChange?: (value: any) => void
+  onChange?: (event: SelectChangeEvent<string>) => void
   className?: string
   label?: string
-  options: { [key: string]: string }[]
+  options: Option[]
 }
 
 export const Select = ({ id, value, label, onChange, className, options }: Props) => (

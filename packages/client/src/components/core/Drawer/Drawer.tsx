@@ -1,11 +1,12 @@
+import React from 'react'
 import styled from 'styled-components'
-import { Drawer as MuiDrawer } from '@mui/material'
+import { Drawer as MuiDrawer, DrawerProps as MuiDrawerProps } from '@mui/material'
 
 type Props = {
   children: React.ReactNode
   onClose: () => void
   isOpen: boolean
-  anchor?: 'left' | 'top' | 'right' | 'bottom'
+  anchor?: MuiDrawerProps['anchor']
   className?: string
   width?: number
 }

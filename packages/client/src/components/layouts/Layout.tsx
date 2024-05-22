@@ -1,8 +1,9 @@
+import React from 'react'
 import styled from 'styled-components'
 import theme from '../../theme'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { logout } from '../../redux/actions'
-import { Header } from './AppBar'
+import { Header } from './Header'
 
 const StyledHeader = styled(Header)`
   background-color: ${theme.colors.blue};
@@ -31,7 +32,12 @@ const Layout = ({ children }: Props) => {
 
   return (
     <>
-      <StyledHeader leftText={sme.legalName} rightText={user.name} img={user.profileImage} settings={headerSettings} />
+      <StyledHeader
+        leftHeaderText={sme?.legalName}
+        rightHeaderText={user?.name}
+        userProfileImage={user?.profileImage}
+        settings={headerSettings}
+      />
       {children}
     </>
   )
