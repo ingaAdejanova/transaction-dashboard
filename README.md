@@ -20,6 +20,6 @@ I have created a new endpoint, /user/me, to streamline the retrieval of user inf
 
 Consideration for SWR
 
-If cached data, data freshness, and real-time updates are a priority, using a library like SWR would be considered for data fetching. SWR provides a way to handle caching, revalidation, and real-time updates efficiently, ensuring that the application always has the most current data.
+If cached data, data freshness, and real-time updates are a priority, using a library like SWR would be considered for data fetching.
 
 
