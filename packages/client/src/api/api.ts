@@ -1,5 +1,4 @@
 import axios, { AxiosResponse, Method, AxiosError } from 'axios'
-import { ROUTES } from '../routes/constants'
 
 const api = axios.create({
   baseURL: 'http://localhost:3000',
@@ -51,7 +50,6 @@ export const setupInterceptors = (onUnauthenticated: () => void) => {
     (error: AxiosError) => {
       if (error.response && error.response.status === 401) {
         onUnauthenticated()
-        window.location.href = ROUTES.LOGIN
 
         throw new Error('Session expired. Please sign in again.')
       }

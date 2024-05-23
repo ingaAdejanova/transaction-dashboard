@@ -1,14 +1,14 @@
-import { Request, Response, NextFunction } from 'express';
-import { badRequest } from '@hapi/boom';
+import { Request, Response, NextFunction } from "express";
+import { unauthorized } from "@hapi/boom";
 
 const jwtDecode = (token?: string | string[]): any | null => {
-  if (!token || typeof token !== 'string') {
+  if (!token || typeof token !== "string") {
     return null;
   }
 
   try {
-    const base64Payload = token.split('.')[1];
-    const payload = Buffer.from(base64Payload, 'base64');
+    const base64Payload = token.split(".")[1];
+    const payload = Buffer.from(base64Payload, "base64");
     return JSON.parse(payload.toString());
   } catch (error) {
     return null;
@@ -40,18 +40,18 @@ type ParsedToken = {
  */
 export const extractToken = (req: Request): ParsedToken => {
   const authHeader = req.headers.authorization;
-  let token: string = '';
+  let token: string = "";
 
-  if (authHeader && authHeader.startsWith('Bearer ')) {
+  if (authHeader && authHeader.startsWith("Bearer ")) {
     token = authHeader.substring(7, authHeader.length);
   } else {
-    throw badRequest('Expected authorization header');
+    throw unauthorized("Expected authorization header");
   }
 
   const parsedToken = jwtDecode(token);
 
   if (!parsedToken || !parsedToken.userData.id || !parsedToken.userData.smeId) {
-    throw badRequest('Token could not be parsed');
+    throw unauthorized("Token could not be parsed");
   }
 
   return parsedToken;
