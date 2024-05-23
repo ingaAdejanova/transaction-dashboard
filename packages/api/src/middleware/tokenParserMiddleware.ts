@@ -1,43 +1,22 @@
 import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 import { unauthorized } from "@hapi/boom";
+import { SECRET_KEY } from "src/constants";
 
-const jwtDecode = (token?: string | string[]): any | null => {
-  if (!token || typeof token !== "string") {
-    return null;
-  }
-
-  try {
-    const base64Payload = token.split(".")[1];
-    const payload = Buffer.from(base64Payload, "base64");
-    return JSON.parse(payload.toString());
-  } catch (error) {
-    return null;
-  }
+type UserData = {
+  id: string;
+  smeId: string;
+  name: string;
+  email: string;
+  profileImage: string;
 };
 
 type ParsedToken = {
-  userData: {
-    id: string;
-    smeId: string;
-    name: string;
-    email: string;
-    profileImage: string;
-  };
+  userData: UserData;
   iat: number;
   exp: number;
 };
 
-/**
- * Extracts the token from the `authorization` header, parses and returns it.
- *
- * Throws `badRequest()` from `@hapi/boom`:
- * - when the headers are not found
- * - when the token is not able to be parsed by `jwtDecode()`
- *
- * @throws badRequest
- * @param req
- * @returns {ParsedToken} parsed token
- */
 export const extractToken = (req: Request): ParsedToken => {
   const authHeader = req.headers.authorization;
   let token: string = "";
@@ -48,13 +27,12 @@ export const extractToken = (req: Request): ParsedToken => {
     throw unauthorized("Expected authorization header");
   }
 
-  const parsedToken = jwtDecode(token);
-
-  if (!parsedToken || !parsedToken.userData.id || !parsedToken.userData.smeId) {
-    throw unauthorized("Token could not be parsed");
+  try {
+    const parsedToken = jwt.verify(token, SECRET_KEY) as ParsedToken;
+    return parsedToken;
+  } catch (error) {
+    throw unauthorized("Token could not be parsed or is expired");
   }
-
-  return parsedToken;
 };
 
 export const tokenParserMiddleware = (
@@ -66,7 +44,7 @@ export const tokenParserMiddleware = (
     const parsedToken = extractToken(req);
     req.body.userData = parsedToken.userData;
     return next();
-  } catch (e: any) {
-    return next(e);
+  } catch (error) {
+    return next(error);
   }
 };
