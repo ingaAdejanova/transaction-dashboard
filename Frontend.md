@@ -26,42 +26,6 @@ The dashboard should not be accessible to the general public, and the user must 
     - Here we should have the full timestamp, the status again, and the name of the user responsible
 - When making requests to the API make sure to have the proper query states setup - show loading states when appropriate
 
-## Evaluation
-
-Your code will be evaluated by the following criteria:
-
-**Correctness**:
-
-- Are all the requirements fulfilled?
-- Is the user able to perform the actions described in the specification?
-
-**Usability**:
-
-- Is it easy to use for the user?
-- Is the UI responsive?
-- Does it communicate properly when it's loading data or when there's an error?
-
-**Code quality**:
-
-- Is the code well organized and easily readable?
-- Is it consistent with the rest of the code in the repository?
-
-### Bonus
-
-You are not required to tackle these, but if you do we will take it into consideration:
-
-- unit, rendering or end-to-end tests
-- deployment configuration
-- beautiful and clean interface
-
-We do recommend that you use a UI library like [@mui/material-ui](https://github.com/mui/material-ui) to make everything look consistent, but it's not required.
-
-There's also a security flaw in the API, can you identity what it is?
-
-## Submission
-
-Clone this repository, and create a private repo with your submission. Then please add the users: [@TheHatSky](https://github.com/TheHatSky) and [@n1tsi](https://github.com/n1tsi). We will do our best to look into your code as soon as possible, but if for some reason we don't get back to you, please send us an email.
-
 # The API
 
 The API contains a few endpoints that you'll need to use:
