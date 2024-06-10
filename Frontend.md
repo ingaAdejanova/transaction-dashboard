@@ -1,4 +1,4 @@
-# Finmid Frontend Challenge
+# Job Frontend Challenge
 
 The goal for this project is to use the provided APIs (in the package `api`) to build a very simple dashboard where users can see their company's (also referred to as **SME**, Small/Medium Enterprises) card transactions.
 
