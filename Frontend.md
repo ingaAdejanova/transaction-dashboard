@@ -6,7 +6,7 @@ The dashboard should not be accessible to the general public, and the user must 
 
 ## Specification
 
-- **Must** use Typescript and React.
+- **Must** use Typescript and React, Redux.
 - Authentication
   - User must be able to login and logout
   - If the token expires, user must be logged out
